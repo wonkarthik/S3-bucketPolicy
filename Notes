@@ -1,0 +1,15 @@
+Version:   Usually the date that the policy was created or modified.
+
+ID:	   A policy name.
+
+Statement: Designates that a block of policy settings is to follow. These policy settings are enclosed in brackets.
+
+Sid: 	   The SID basically determines what the policy does, and should not be confused with a Windows Security Identifier. For example, if the action that needs to be performed involves adding a user to an Access Control List (ACL), then the SID would be AddCannedAcl. Similarly, if the policy is designed to evaluate IP addresses, then the SID might be set to IPAllow. The previously mentioned Examples page lists a variety of SIDs that you can use.
+
+Effect:	   The Effect string controls what happens when the policy is applied. In most cases, the effect can be to either allow an action or to deny an action.
+
+Principal: The Principal string controls who the policy applies to. Setting the Principal string to * makes the string apply to everyone, but it is possible to specify individual AWS accounts.
+
+Action:    The Action is what happens if the policy is applied. For example "s3:GetObject" allows the principal to read object data.
+
+Resource:  The Resource is the bucket to which the statement applies. You cannot, however, simply enter a bucket name. The bucket name must be entered in a special format. If, for example, the statement were to apply to a bucket named poseydemo-test, then the resource iamazon resource name (arn) would be expressed as "arn:aws:s3:::poseydemo-test/*".

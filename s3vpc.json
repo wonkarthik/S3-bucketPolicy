@@ -1,0 +1,74 @@
+{
+	"Version": "2008-10-17",
+	"Id": "S3PolicyId1",
+	"Statement": [
+		{
+			"Sid": "IPAllow",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "*"
+			},
+			"Action": "s3:*",
+			"Resource": "arn:aws:s3:::my-key-value/*",
+			"Condition": {
+				"IpAddress": {
+					"aws:SourceIp": "IP-ADDRESS/32"
+				}
+			}
+		},
+		{
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "arn:aws:iam::27*****17646:role/My-Test-Secret-wordpress-EcsServerRole-1EQLD5HTGW6Q1"
+			},
+			"Action": [
+				"s3:GetObject",
+				"s3:PutObject",
+				"s3:DeleteObject"
+			],
+			"Resource": "arn:aws:s3:::my-key-value/*"
+		},
+		{
+       "Sid": "Access-to-specific-VPC-only",
+       "Action": "s3:*",
+       "Effect": "Deny",
+       "Resource": "arn:aws:s3:::my-key-value/*",
+       "Condition": {
+         "StringNotEquals": {
+           "aws:sourceVpc": "vpc-b631d3d2"
+         }
+       },
+       "Principal": "*"
+     }
+	]
+}
+
+
+{
+	"Version": "2008-10-17",
+	"Id": "S3PolicyId1",
+	"Statement": [
+		{
+			"Sid": "IPAllow",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "*"
+			},
+			"Action": "s3:*",
+			"Resource": "arn:aws:s3:::my-key-value/*",
+			"Condition": {
+				"IpAddress": {
+					"aws:SourceIp": "IP-ADDRESS/32"
+				}
+			}
+		},
+		{
+			"Action": "s3:*",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::27*****17646:role/ecs-jenkins"
+            },
+            "Resource": "arn:aws:s3:::my-key-value/*"
+        }
+    ]
+}
